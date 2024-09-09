@@ -15,7 +15,7 @@
 import NIOCore
 
 public struct FunctionURLWrapper: Decodable {
-    public let body: ByteBuffer
+    public let body: String
 }
 
 /// The protocol a decoder must conform to so that it can be used with ``LambdaCodableAdapter`` to decode incoming
@@ -133,7 +133,7 @@ public struct LambdaCodableAdapter<
         context: LambdaContext
     ) async throws {
         let functionURLObject = try self.decoder.decode(FunctionURLWrapper.self, from: request)
-        let event = try self.decoder.decode(Event.self, from: functionURLObject.body)
+        let event = try self.decoder.decode(Event.self, from: ByteBuffer(string: functionURLObject.body))
 
         let writer = LambdaCodableResponseWriter<Output, Encoder, Writer>(
             encoder: self.encoder,

@@ -743,7 +743,7 @@ extension LambdaChannelHandler: ChannelInboundHandler {
                 let metadata = try InvocationMetadata(headers: response.head.headers)
                 self.state = .connected(context, .waitingForResponse)
                 let responseBody = response.body ?? ByteBuffer()
-                self.logger.info("Received invocation event: \(responseBody)")
+                self.logger.info("Received invocation event: \(String(buffer: responseBody))")
                 continuation.resume(returning: Invocation(metadata: metadata, event: responseBody))
             } catch {
                 self.state = .closing

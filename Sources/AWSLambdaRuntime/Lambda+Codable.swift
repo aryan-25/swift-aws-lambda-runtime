@@ -24,16 +24,7 @@ import class Foundation.JSONDecoder
 import class Foundation.JSONEncoder
 #endif
 
-struct FunctionURLWrapper: Decodable {
-    let body: ByteBuffer
-}
-
-extension JSONDecoder: AWSLambdaRuntimeCore.LambdaEventDecoder {
-    public func decode<Event: Decodable>(_ type: Event.Type, from buffer: ByteBuffer) throws -> Event {
-        let functionURL = try self.decode<FunctionURLWrapper>(FunctionURLWrapper.self, from: buffer)
-        return try self.decode(Event.self, from: functionURL.body)
-    }
-}
+extension JSONDecoder: AWSLambdaRuntimeCore.LambdaEventDecoder {}
 
 public struct LambdaJSONOutputEncoder<Output: Encodable>: LambdaOutputEncoder {
     @usableFromInline let jsonEncoder: JSONEncoder

@@ -33,7 +33,6 @@ let package = Package(
             dependencies: [
                 .byName(name: "AWSLambdaRuntimeCore"),
                 .product(name: "NIOCore", package: "swift-nio"),
-                .product(name: "NIOFoundationCompat", package: "swift-nio"),
             ],
             swiftSettings: [.swiftLanguageMode(.v5)]
         ),
@@ -52,9 +51,9 @@ let package = Package(
             name: "AWSLambdaPackager",
             capability: .command(
                 intent: .custom(
-                    verb: "archive",
+                    verb: "build",
                     description:
-                        "Archive the Lambda binary and prepare it for uploading to AWS. Requires docker on macOS or non Amazonlinux 2 distributions."
+                        "Build the Lambda binary. Requires docker on macOS or non Amazonlinux 2 distributions."
                 )
             )
         ),

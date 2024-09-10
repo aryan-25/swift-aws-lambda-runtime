@@ -56,20 +56,20 @@ struct AWSLambdaPackager: CommandPlugin {
         }
 
         // create the archive
-        let archives = try self.package(
-            packageName: context.package.displayName,
-            products: builtProducts,
-            toolsProvider: { name in try context.tool(named: name).url },
-            outputDirectory: configuration.outputDirectory,
-            verboseLogging: configuration.verboseLogging
-        )
+        // let archives = try self.package(
+        //     packageName: context.package.displayName,
+        //     products: builtProducts,
+        //     toolsProvider: { name in try context.tool(named: name).url },
+        //     outputDirectory: configuration.outputDirectory,
+        //     verboseLogging: configuration.verboseLogging
+        // )
 
-        print(
-            "\(archives.count > 0 ? archives.count.description : "no") archive\(archives.count != 1 ? "s" : "") created"
-        )
-        for (product, archivePath) in archives {
-            print("  * \(product.name) at \(archivePath)")
-        }
+        // print(
+        //     "\(archives.count > 0 ? archives.count.description : "no") archive\(archives.count != 1 ? "s" : "") created"
+        // )
+        // for (product, archivePath) in archives {
+        //     print("  * \(product.name) at \(archivePath)")
+        // }
     }
 
     private func buildInDocker(

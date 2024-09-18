@@ -51,9 +51,9 @@ let package = Package(
             name: "AWSLambdaPackager",
             capability: .command(
                 intent: .custom(
-                    verb: "build",
+                    verb: "archive",
                     description:
-                        "Build the Lambda binary. Requires docker on macOS or non Amazonlinux 2 distributions."
+                        "Archive the Lambda binary and prepare it for uploading to AWS. Requires docker on macOS or non Amazonlinux 2 distributions."
                 )
             )
         ),
